@@ -26,6 +26,7 @@ const tools = [
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Shaune Drake Tech - free tools, practical guides, and technology projects." />
   <title>Shaune Drake Tech | Tools, Guides & Projects</title>
+
   <style>
     :root {
       font-family: Inter, system-ui, Arial, sans-serif;
@@ -37,7 +38,10 @@ const tools = [
 
     body { margin: 0; }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .container {
       max-width: 1120px;
@@ -111,13 +115,17 @@ const tools = [
       color: white;
       border-radius: 10px;
       font-weight: 700;
+      transition: background 0.2s;
     }
 
     .button:hover { background: #0369a1; }
 
     section { padding: 30px 0 90px; }
 
-    h2 { font-size: 30px; color: white; }
+    h2 {
+      font-size: 30px;
+      color: white;
+    }
 
     .subtitle { color: #94a3b8; }
 
@@ -148,6 +156,21 @@ const tools = [
       font-size: 14px;
     }
 
+    .card .button {
+      margin-top: 16px;
+      font-size: 14px;
+      padding: 12px 20px;
+    }
+
+    .coming-soon {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 12px 0;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
     footer {
       border-top: 1px solid #1e293b;
       padding: 30px 0;
@@ -163,10 +186,14 @@ const tools = [
     }
   </style>
 </head>
+
 <body>
   <header>
     <nav class="container">
-      <a class="logo" href="/">SD<span>.</span> Shaune Drake</a>
+      <a class="logo" href="/">
+        SD<span>.</span> Shaune Drake
+      </a>
+
       <div class="links">
         <a href="#tools">Tools</a>
         <a href="#about">About</a>
@@ -177,36 +204,52 @@ const tools = [
 
   <main>
     <div class="hero container">
-      <div class="eyebrow">TOOLS • GUIDES • EXPERIMENTS</div>
-      <h1>Technology should work for you. Not against you.</h1>
+      <div class="eyebrow">
+        TOOLS • GUIDES • EXPERIMENTS
+      </div>
+
+      <h1>
+        Technology should work for you. Not against you.
+      </h1>
+
       <p>
         Practical solutions, free online tools, and interesting
         technology projects that make everyday computing easier.
       </p>
-      <a class="button" href="#tools">Explore Free Tools</a>
+
+      <a class="button" href="#tools">
+        Explore Free Tools
+      </a>
     </div>
 
     <section class="container" id="tools">
       <h2>Explore the Tech Lab</h2>
-      <p class="subtitle">Useful resources and experiments. More coming soon.</p>
+
+      <p class="subtitle">
+        Useful resources and experiments. More coming soon.
+      </p>
 
       <div class="grid">
         {tools.map((tool) => (
           <article class="card">
             <div class="icon">{tool.icon}</div>
+
             <h3>{tool.title}</h3>
+
             <p>{tool.description}</p>
 
-<p>{tool.description}</p>
-
-{tool.title === "Windows Cleanup" && (
-  <a href="/tools/windows-cleanup" class="button">
-    Launch Tool →
-  </a>
-)}
-
-</article>
-
+            {tool.title === "Windows Cleanup" ? (
+              <a
+                href="/tools/windows-cleanup"
+                class="button"
+              >
+                Launch Tool →
+              </a>
+            ) : (
+              <span class="coming-soon">
+                Coming Soon
+              </span>
+            )}
           </article>
         ))}
       </div>
@@ -214,6 +257,7 @@ const tools = [
 
     <section class="container" id="about">
       <h2>Hi, I'm Shaune.</h2>
+
       <p class="subtitle">
         I enjoy solving technology problems, experimenting with
         software, and building useful tools. This is where
@@ -223,6 +267,7 @@ const tools = [
 
     <section class="container" id="projects">
       <h2>Projects & Experiments</h2>
+
       <p class="subtitle">
         New projects, tutorials, and downloadable resources
         are on the way.
