@@ -9,7 +9,7 @@ const pageTitle = "Windows Cleanup Toolkit";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-    content="Free Windows cleanup and maintenance toolkit from Shaune Drake Tech." />
+    content="Generate free Windows cleanup PowerShell scripts. Select tasks, preview the script, and download it safely." />
   <title>{pageTitle} | Shaune Drake Tech</title>
 
   <style>
@@ -17,6 +17,7 @@ const pageTitle = "Windows Cleanup Toolkit";
       font-family: Inter, system-ui, Arial, sans-serif;
       background: #0b1220;
       color: #e2e8f0;
+      color-scheme: dark;
     }
 
     * { box-sizing: border-box; }
@@ -28,32 +29,37 @@ const pageTitle = "Windows Cleanup Toolkit";
       text-decoration: none;
     }
 
+    a:hover { text-decoration: underline; }
+
     .container {
-      max-width: 900px;
+      max-width: 950px;
       margin: auto;
-      padding: 24px;
+      padding: 0 24px;
     }
 
     header {
-      padding: 20px 0;
+      padding: 22px 0;
       border-bottom: 1px solid #26364d;
     }
 
     .logo {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 800;
       color: white;
     }
 
     .logo span { color: #38bdf8; }
 
-    main { padding-top: 65px; }
+    main { padding-top: 45px; padding-bottom: 80px; }
 
     h1 {
-      font-size: clamp(32px, 5vw, 52px);
+      font-size: clamp(32px, 5vw, 50px);
       color: white;
-      margin-bottom: 16px;
+      margin: 25px 0 16px;
+      letter-spacing: -1px;
     }
+
+    h2 { color: white; font-size: 23px; }
 
     .subtitle {
       color: #94a3b8;
@@ -62,7 +68,7 @@ const pageTitle = "Windows Cleanup Toolkit";
     }
 
     .panel {
-      margin-top: 35px;
+      margin-top: 32px;
       background: #172338;
       border: 1px solid #26364d;
       border-radius: 16px;
@@ -71,34 +77,39 @@ const pageTitle = "Windows Cleanup Toolkit";
 
     .option {
       display: flex;
-      gap: 14px;
-      align-items: center;
-      padding: 18px 0;
+      gap: 15px;
+      align-items: flex-start;
+      padding: 21px 0;
       border-bottom: 1px solid #26364d;
     }
 
-    .option:last-child { border-bottom: 0; }
+    .option:last-of-type { border-bottom: 0; }
 
     input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
+      width: 21px;
+      height: 21px;
       accent-color: #0284c7;
+      flex-shrink: 0;
+      margin-top: 3px;
+      cursor: pointer;
     }
 
     label {
       font-size: 16px;
       font-weight: 600;
+      cursor: pointer;
     }
 
     .description {
       color: #94a3b8;
       font-size: 13px;
-      margin-top: 5px;
+      line-height: 1.6;
+      margin-top: 6px;
     }
 
-    button {
-      margin-top: 24px;
-      padding: 14px 24px;
+    .button {
+      display: inline-block;
+      padding: 14px 22px;
       background: #0284c7;
       color: white;
       border: 0;
@@ -106,15 +117,88 @@ const pageTitle = "Windows Cleanup Toolkit";
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
+      text-align: center;
     }
 
-    button:hover { background: #0369a1; }
+    .button:hover {
+      background: #0369a1;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: #334155;
+    }
+
+    .button.secondary:hover {
+      background: #475569;
+    }
+
+    .button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
 
     .notice {
-      margin-top: 24px;
       color: #94a3b8;
       font-size: 13px;
+      line-height: 1.7;
+      margin-top: 22px;
+    }
+
+    .warning {
+      padding: 16px;
+      background: #302516;
+      border: 1px solid #92400e;
+      border-radius: 10px;
+      color: #fcd34d;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 20px;
+    }
+
+    .success {
+      color: #86efac;
+      font-size: 14px;
+      margin-top: 18px;
+    }
+
+    .preview {
+      margin-top: 20px;
+      padding: 18px;
+      background: #080f1c;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      color: #a5f3fc;
+      font-family: Consolas, monospace;
+      font-size: 13px;
       line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+
+    .hidden { display: none; }
+
+    footer {
+      border-top: 1px solid #26364d;
+      padding: 30px 0;
+      color: #64748b;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .panel { padding: 22px; }
+      .actions { flex-direction: column; }
+      .button { width: 100%; }
     }
   </style>
 </head>
@@ -134,20 +218,21 @@ const pageTitle = "Windows Cleanup Toolkit";
     <h1>Windows Cleanup Toolkit</h1>
 
     <p class="subtitle">
-      Create a customized Windows maintenance script.
-      Select the cleanup tasks you want, review your choices,
-      and generate a PowerShell script.
+      Generate your own Windows maintenance script.
+      Choose what you want to clean, preview the commands,
+      and download your customized PowerShell script.
     </p>
 
     <div class="panel">
-      <h2>Select Cleanup Tasks</h2>
+      <h2>🧹 Select Cleanup Tasks</h2>
 
       <div class="option">
         <input type="checkbox" id="temp" checked />
         <div>
           <label for="temp">Temporary Files</label>
           <div class="description">
-            Remove eligible files from your user temp folder.
+            Remove files older than 7 days from your user
+            temporary folder. Files currently in use are skipped.
           </div>
         </div>
       </div>
@@ -155,9 +240,10 @@ const pageTitle = "Windows Cleanup Toolkit";
       <div class="option">
         <input type="checkbox" id="recycle" />
         <div>
-          <label for="recycle">Recycle Bin</label>
+          <label for="recycle">Empty Recycle Bin</label>
           <div class="description">
-            Permanently empty the Recycle Bin.
+            Permanently delete items in your Recycle Bin.
+            PowerShell will ask for confirmation.
           </div>
         </div>
       </div>
@@ -165,24 +251,258 @@ const pageTitle = "Windows Cleanup Toolkit";
       <div class="option">
         <input type="checkbox" id="dns" />
         <div>
-          <label for="dns">DNS Cache</label>
+          <label for="dns">Flush DNS Cache</label>
           <div class="description">
-            Flush cached DNS resolver entries.
+            Clear cached DNS resolver entries to help
+            troubleshoot certain network problems.
           </div>
         </div>
       </div>
 
-      <button type="button" disabled
-        title="Script generation coming next">
-        Generate PowerShell Script — Coming Next
-      </button>
+      <div class="warning">
+        ⚠️ Important: Removing temporary files and emptying
+        the Recycle Bin can permanently delete data.
+        Review the generated script and back up anything
+        important before running it.
+      </div>
+
+      <div class="actions">
+        <button id="generate" class="button" type="button">
+          Generate PowerShell Script
+        </button>
+      </div>
 
       <p class="notice">
-        This tool does not access or modify your computer.
-        Script generation will be added in the next update.
-        Always review scripts before running them.
+        This website never accesses your computer.
+        All script generation happens locally in your browser.
+        Nothing is executed automatically.
+      </p>
+    </div>
+
+    <div id="results" class="panel hidden" aria-live="polite">
+      <h2>📄 Your PowerShell Script</h2>
+
+      <p class="subtitle">
+        Review the commands below before downloading.
+        The script will ask for confirmation before
+        performing cleanup.
+      </p>
+
+      <pre id="scriptPreview" class="preview"></pre>
+
+      <div class="actions">
+        <button id="download" class="button" type="button">
+          Download .PS1 File
+        </button>
+
+        <button id="copy" class="button secondary" type="button">
+          Copy Script
+        </button>
+      </div>
+
+      <p id="status" class="success" role="status"></p>
+    </div>
+
+    <div class="panel">
+      <h2>How to Use</h2>
+
+      <p class="subtitle">
+        1. Select the maintenance tasks you want.
+      </p>
+
+      <p class="subtitle">
+        2. Click Generate PowerShell Script.
+      </p>
+
+      <p class="subtitle">
+        3. Review and download the generated .ps1 file.
+      </p>
+
+      <p class="subtitle">
+        4. On a trusted Windows PC, inspect the downloaded
+        file in a text editor before running it.
+      </p>
+
+      <p class="subtitle">
+        5. If you choose to run it, open PowerShell,
+        navigate to the download location, and run
+        the file using its relative path.
+        Read each confirmation prompt carefully.
+      </p>
+
+      <p class="notice">
+        No execution-policy bypass is required or recommended.
+        If your computer blocks scripts, follow your
+        organization's security policy rather than
+        disabling protections.
       </p>
     </div>
   </main>
+
+  <footer>
+    <div class="container">
+      © {new Date().getFullYear()} Shaune Drake Tech.
+      Free tools for everyday computing.
+    </div>
+  </footer>
+
+  <script>
+    const temp = document.getElementById("temp");
+    const recycle = document.getElementById("recycle");
+    const dns = document.getElementById("dns");
+
+    const generateButton = document.getElementById("generate");
+    const downloadButton = document.getElementById("download");
+    const copyButton = document.getElementById("copy");
+
+    const results = document.getElementById("results");
+    const preview = document.getElementById("scriptPreview");
+    const status = document.getElementById("status");
+
+    let generatedScript = "";
+
+    const header = [
+      "# Shaune Drake Tech - Windows Cleanup Toolkit",
+      "# https://shaunedrake.com",
+      "# Review this script before running it.",
+      "# Windows 10 / Windows 11",
+      "",
+      "$ErrorActionPreference = 'Stop'",
+      "",
+      "Write-Host 'Shaune Drake Tech - Windows Cleanup Toolkit'",
+      "Write-Host 'Selected tasks will be shown below.'",
+      ""
+    ].join("\n");
+
+    const tempScript = [
+      "# TASK: Clean old user temporary files",
+      "$tempPath = [System.IO.Path]::GetTempPath()",
+      "",
+      "if (-not (Test-Path -LiteralPath $tempPath)) {",
+      "    Write-Warning 'Temporary folder not found.'",
+      "} else {",
+      "    $cutoff = (Get-Date).AddDays(-7)",
+      "    $files = @(Get-ChildItem -LiteralPath $tempPath -File -Force -Recurse -ErrorAction SilentlyContinue |",
+      "        Where-Object { $_.LastWriteTime -lt $cutoff })",
+      "",
+      "    Write-Host ('Old temporary files found: ' + $files.Count)",
+      "",
+      "    $answer = Read-Host 'Delete these files permanently? Type YES to confirm'",
+      "    if ($answer -ceq 'YES') {",
+      "        foreach ($file in $files) {",
+      "            try {",
+      "                Remove-Item -LiteralPath $file.FullName -Force -ErrorAction Stop",
+      "            } catch {",
+      "                Write-Warning ('Skipped: ' + $file.FullName)",
+      "            }",
+      "        }",
+      "        Write-Host 'Temporary file cleanup finished.'",
+      "    } else {",
+      "        Write-Host 'Temporary file cleanup skipped.'",
+      "    }",
+      "}",
+      ""
+    ].join("\n");
+
+    const recycleScript = [
+      "# TASK: Empty Recycle Bin",
+      "Write-Warning 'Recycle Bin contents will be permanently deleted.'",
+      "$answer = Read-Host 'Empty the Recycle Bin? Type YES to confirm'",
+      "if ($answer -ceq 'YES') {",
+      "    Clear-RecycleBin -Confirm:$false -ErrorAction Stop",
+      "    Write-Host 'Recycle Bin emptied.'",
+      "} else {",
+      "    Write-Host 'Recycle Bin cleanup skipped.'",
+      "}",
+      ""
+    ].join("\n");
+
+    const dnsScript = [
+      "# TASK: Flush DNS resolver cache",
+      "Write-Host 'Flushing DNS resolver cache...'",
+      "try {",
+      "    Clear-DnsClientCache -ErrorAction Stop",
+      "    Write-Host 'DNS cache flushed.'",
+      "} catch {",
+      "    Write-Warning ('DNS cache flush failed: ' + $_.Exception.Message)",
+      "}",
+      ""
+    ].join("\n");
+
+    function generateScript() {
+      const tasks = [];
+
+      if (temp.checked) tasks.push(tempScript);
+      if (recycle.checked) tasks.push(recycleScript);
+      if (dns.checked) tasks.push(dnsScript);
+
+      if (tasks.length === 0) {
+        results.classList.add("hidden");
+        alert("Please select at least one cleanup task.");
+        return;
+      }
+
+      generatedScript = [
+        header,
+        ...tasks,
+        "Write-Host 'Selected maintenance tasks finished.'",
+        "Read-Host 'Press Enter to close'"
+      ].join("\n");
+
+      preview.textContent = generatedScript;
+      results.classList.remove("hidden");
+      status.textContent = "";
+
+      results.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    function downloadScript() {
+      if (!generatedScript) return;
+
+      const blob = new Blob([generatedScript], {
+        type: "text/plain;charset=utf-8"
+      });
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "ShauneDrake-WindowsCleanup.ps1";
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+      status.textContent = "Script download requested.";
+    }
+
+    async function copyScript() {
+      if (!generatedScript) return;
+
+      try {
+        await navigator.clipboard.writeText(generatedScript);
+        status.textContent = "Script copied to clipboard.";
+      } catch {
+        status.textContent = "Unable to copy automatically. Select the preview text instead.";
+      }
+    }
+
+    generateButton.addEventListener("click", generateScript);
+    downloadButton.addEventListener("click", downloadScript);
+    copyButton.addEventListener("click", copyScript);
+
+    [temp, recycle, dns].forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        generatedScript = "";
+        results.classList.add("hidden");
+        status.textContent = "";
+      });
+    });
+  </script>
 </body>
 </html>
