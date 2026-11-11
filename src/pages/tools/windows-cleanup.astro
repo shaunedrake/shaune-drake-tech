@@ -1,0 +1,188 @@
+
+---
+const pageTitle = "Windows Cleanup Toolkit";
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Free Windows cleanup and maintenance toolkit from Shaune Drake Tech." />
+  <title>{pageTitle} | Shaune Drake Tech</title>
+
+  <style>
+    :root {
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background: #0b1220;
+      color: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 24px;
+    }
+
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid #26364d;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .logo span { color: #38bdf8; }
+
+    main { padding-top: 65px; }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .panel {
+      margin-top: 35px;
+      background: #172338;
+      border: 1px solid #26364d;
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .option {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid #26364d;
+    }
+
+    .option:last-child { border-bottom: 0; }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #0284c7;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .description {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 24px;
+      padding: 14px 24px;
+      background: #0284c7;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover { background: #0369a1; }
+
+    .notice {
+      margin-top: 24px;
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a class="logo" href="/">
+        SD<span>.</span> Shaune Drake Tech
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="/">← Back to Home</a>
+
+    <h1>Windows Cleanup Toolkit</h1>
+
+    <p class="subtitle">
+      Create a customized Windows maintenance script.
+      Select the cleanup tasks you want, review your choices,
+      and generate a PowerShell script.
+    </p>
+
+    <div class="panel">
+      <h2>Select Cleanup Tasks</h2>
+
+      <div class="option">
+        <input type="checkbox" id="temp" checked />
+        <div>
+          <label for="temp">Temporary Files</label>
+          <div class="description">
+            Remove eligible files from your user temp folder.
+          </div>
+        </div>
+      </div>
+
+      <div class="option">
+        <input type="checkbox" id="recycle" />
+        <div>
+          <label for="recycle">Recycle Bin</label>
+          <div class="description">
+            Permanently empty the Recycle Bin.
+          </div>
+        </div>
+      </div>
+
+      <div class="option">
+        <input type="checkbox" id="dns" />
+        <div>
+          <label for="dns">DNS Cache</label>
+          <div class="description">
+            Flush cached DNS resolver entries.
+          </div>
+        </div>
+      </div>
+
+      <button type="button" disabled
+        title="Script generation coming next">
+        Generate PowerShell Script — Coming Next
+      </button>
+
+      <p class="notice">
+        This tool does not access or modify your computer.
+        Script generation will be added in the next update.
+        Always review scripts before running them.
+      </p>
+    </div>
+  </main>
+</body>
+</html>
