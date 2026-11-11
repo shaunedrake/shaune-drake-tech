@@ -1,0 +1,229 @@
+
+---
+const tools = [
+  {
+    icon: "🧹",
+    title: "Windows Cleanup",
+    description: "Practical tools and guides for keeping Windows running smoothly."
+  },
+  {
+    icon: "🌐",
+    title: "Network Troubleshooting",
+    description: "Diagnose connectivity problems and learn how to fix them."
+  },
+  {
+    icon: "💾",
+    title: "Home Server Tools",
+    description: "Helpful resources for Jellyfin, storage, and home networking."
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shaune Drake Tech - free tools, practical guides, and technology projects." />
+  <title>Shaune Drake Tech | Tools, Guides & Projects</title>
+  <style>
+    :root {
+      font-family: Inter, system-ui, Arial, sans-serif;
+      color: #e2e8f0;
+      background: #0b1220;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1120px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    header {
+      border-bottom: 1px solid #1e293b;
+      padding: 22px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: #38bdf8; }
+
+    .links {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .links a:hover { color: #38bdf8; }
+
+    .hero {
+      padding: 110px 0 90px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: #38bdf8;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      max-width: 850px;
+      margin: 24px auto;
+      color: white;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto 32px;
+      color: #94a3b8;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 24px;
+      background: #0284c7;
+      color: white;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .button:hover { background: #0369a1; }
+
+    section { padding: 30px 0 90px; }
+
+    h2 { font-size: 30px; color: white; }
+
+    .subtitle { color: #94a3b8; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .card {
+      background: #172338;
+      border: 1px solid #26364d;
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .card .icon { font-size: 32px; }
+
+    .card h3 {
+      color: white;
+      margin: 20px 0 12px;
+    }
+
+    .card p {
+      color: #94a3b8;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid #1e293b;
+      padding: 30px 0;
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 75px 0; }
+      .links { gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="/">SD<span>.</span> Shaune Drake</a>
+      <div class="links">
+        <a href="#tools">Tools</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero container">
+      <div class="eyebrow">TOOLS • GUIDES • EXPERIMENTS</div>
+      <h1>Technology should work for you. Not against you.</h1>
+      <p>
+        Practical solutions, free online tools, and interesting
+        technology projects that make everyday computing easier.
+      </p>
+      <a class="button" href="#tools">Explore Free Tools</a>
+    </div>
+
+    <section class="container" id="tools">
+      <h2>Explore the Tech Lab</h2>
+      <p class="subtitle">Useful resources and experiments. More coming soon.</p>
+
+      <div class="grid">
+        {tools.map((tool) => (
+          <article class="card">
+            <div class="icon">{tool.icon}</div>
+            <h3>{tool.title}</h3>
+            <p>{tool.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="container" id="about">
+      <h2>Hi, I'm Shaune.</h2>
+      <p class="subtitle">
+        I enjoy solving technology problems, experimenting with
+        software, and building useful tools. This is where
+        I share what I learn and create.
+      </p>
+    </section>
+
+    <section class="container" id="projects">
+      <h2>Projects & Experiments</h2>
+      <p class="subtitle">
+        New projects, tutorials, and downloadable resources
+        are on the way.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © {new Date().getFullYear()} Shaune Drake.
+      Built with Astro and Cloudflare Pages.
+    </div>
+  </footer>
+</body>
+</html>
