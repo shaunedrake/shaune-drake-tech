@@ -8,8 +8,10 @@ const pageTitle = "Windows Cleanup Toolkit";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-    content="Generate free Windows cleanup PowerShell scripts. Select tasks, preview the script, and download it safely." />
+  <meta
+    name="description"
+    content="Free Windows Cleanup Toolkit. Generate PowerShell scripts with preview-first cleanup, disk space analysis, and detailed reports."
+  />
   <title>{pageTitle} | Shaune Drake Tech</title>
 
   <style>
@@ -20,16 +22,22 @@ const pageTitle = "Windows Cleanup Toolkit";
       color-scheme: dark;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    body { margin: 0; }
+    body {
+      margin: 0;
+    }
 
     a {
       color: #38bdf8;
       text-decoration: none;
     }
 
-    a:hover { text-decoration: underline; }
+    a:hover {
+      text-decoration: underline;
+    }
 
     .container {
       max-width: 950px;
@@ -48,9 +56,14 @@ const pageTitle = "Windows Cleanup Toolkit";
       color: white;
     }
 
-    .logo span { color: #38bdf8; }
+    .logo span {
+      color: #38bdf8;
+    }
 
-    main { padding-top: 45px; padding-bottom: 80px; }
+    main {
+      padding-top: 45px;
+      padding-bottom: 80px;
+    }
 
     h1 {
       font-size: clamp(32px, 5vw, 50px);
@@ -59,12 +72,27 @@ const pageTitle = "Windows Cleanup Toolkit";
       letter-spacing: -1px;
     }
 
-    h2 { color: white; font-size: 23px; }
+    h2 {
+      color: white;
+      font-size: 23px;
+    }
 
     .subtitle {
       color: #94a3b8;
       line-height: 1.7;
       font-size: 17px;
+    }
+
+    .version {
+      display: inline-block;
+      padding: 7px 12px;
+      background: #12344b;
+      color: #7dd3fc;
+      border: 1px solid #075985;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 16px;
     }
 
     .panel {
@@ -83,7 +111,9 @@ const pageTitle = "Windows Cleanup Toolkit";
       border-bottom: 1px solid #26364d;
     }
 
-    .option:last-of-type { border-bottom: 0; }
+    .option:last-of-type {
+      border-bottom: 0;
+    }
 
     input[type="checkbox"] {
       width: 21px;
@@ -163,6 +193,17 @@ const pageTitle = "Windows Cleanup Toolkit";
       margin-top: 20px;
     }
 
+    .info {
+      padding: 16px;
+      background: #102b40;
+      border: 1px solid #075985;
+      border-radius: 10px;
+      color: #bae6fd;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 20px;
+    }
+
     .success {
       color: #86efac;
       font-size: 14px;
@@ -181,11 +222,35 @@ const pageTitle = "Windows Cleanup Toolkit";
       line-height: 1.6;
       white-space: pre-wrap;
       overflow-wrap: anywhere;
-      max-height: 480px;
+      max-height: 500px;
       overflow-y: auto;
     }
 
-    .hidden { display: none; }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .feature {
+      background: #101d30;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid #26364d;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .feature strong {
+      display: block;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
 
     footer {
       border-top: 1px solid #26364d;
@@ -196,9 +261,21 @@ const pageTitle = "Windows Cleanup Toolkit";
     }
 
     @media (max-width: 600px) {
-      .panel { padding: 22px; }
-      .actions { flex-direction: column; }
-      .button { width: 100%; }
+      .panel {
+        padding: 22px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -215,13 +292,39 @@ const pageTitle = "Windows Cleanup Toolkit";
   <main class="container">
     <a href="/">← Back to Home</a>
 
+    <div class="version">
+      VERSION 1.1 • FREE WINDOWS UTILITY
+    </div>
+
     <h1>Windows Cleanup Toolkit</h1>
 
     <p class="subtitle">
-      Generate your own Windows maintenance script.
-      Choose what you want to clean, preview the commands,
-      and download your customized PowerShell script.
+      Generate a customized Windows maintenance script.
+      Preview eligible files, estimate recoverable disk space,
+      and review cleanup results.
     </p>
+
+    <div class="features">
+      <div class="feature">
+        <strong>🔍 Preview First</strong>
+        Review eligible files before deletion.
+      </div>
+
+      <div class="feature">
+        <strong>💾 Space Analysis</strong>
+        Estimate how much disk space can be recovered.
+      </div>
+
+      <div class="feature">
+        <strong>🛡️ Safety Checks</strong>
+        Confirm destructive actions before cleanup.
+      </div>
+
+      <div class="feature">
+        <strong>📊 Cleanup Report</strong>
+        Review completed, skipped, and failed tasks.
+      </div>
+    </div>
 
     <div class="panel">
       <h2>🧹 Select Cleanup Tasks</h2>
@@ -231,8 +334,9 @@ const pageTitle = "Windows Cleanup Toolkit";
         <div>
           <label for="temp">Temporary Files</label>
           <div class="description">
-            Remove files older than 7 days from your user
-            temporary folder. Files currently in use are skipped.
+            Analyze user temporary files older than 7 days.
+            Display file counts and estimated space before
+            offering deletion.
           </div>
         </div>
       </div>
@@ -242,8 +346,8 @@ const pageTitle = "Windows Cleanup Toolkit";
         <div>
           <label for="recycle">Empty Recycle Bin</label>
           <div class="description">
-            Permanently delete items in your Recycle Bin.
-            PowerShell will ask for confirmation.
+            Permanently remove Recycle Bin contents only
+            after explicit confirmation.
           </div>
         </div>
       </div>
@@ -253,17 +357,27 @@ const pageTitle = "Windows Cleanup Toolkit";
         <div>
           <label for="dns">Flush DNS Cache</label>
           <div class="description">
-            Clear cached DNS resolver entries to help
-            troubleshoot certain network problems.
+            Clear Windows DNS resolver cache.
+            This may help troubleshoot DNS-related problems.
           </div>
         </div>
       </div>
 
+      <div class="info">
+        <strong>How preview-first cleanup works</strong>
+        <p>
+          The generated script scans eligible temporary files
+          and calculates their total size before offering
+          deletion. It will not delete files without
+          confirmation.
+        </p>
+      </div>
+
       <div class="warning">
-        ⚠️ Important: Removing temporary files and emptying
-        the Recycle Bin can permanently delete data.
-        Review the generated script and back up anything
-        important before running it.
+        ⚠️ Cleanup can permanently remove files.
+        Back up important data, review the generated
+        PowerShell script, and close applications before
+        running it.
       </div>
 
       <div class="actions">
@@ -273,26 +387,27 @@ const pageTitle = "Windows Cleanup Toolkit";
       </div>
 
       <p class="notice">
-        This website never accesses your computer.
-        All script generation happens locally in your browser.
-        Nothing is executed automatically.
+        This website does not scan or access your computer.
+        It generates a script entirely in your browser.
+        The downloaded script performs analysis only when
+        you choose to run it on Windows.
       </p>
     </div>
 
     <div id="results" class="panel hidden" aria-live="polite">
-      <h2>📄 Your PowerShell Script</h2>
+      <h2>📄 Generated PowerShell Script</h2>
 
       <p class="subtitle">
-        Review the commands below before downloading.
-        The script will ask for confirmation before
-        performing cleanup.
+        Review the complete script below.
+        Download it when you are satisfied with
+        the selected maintenance tasks.
       </p>
 
       <pre id="scriptPreview" class="preview"></pre>
 
       <div class="actions">
         <button id="download" class="button" type="button">
-          Download .PS1 File
+          Download PowerShell Script
         </button>
 
         <button id="copy" class="button secondary" type="button">
@@ -307,34 +422,32 @@ const pageTitle = "Windows Cleanup Toolkit";
       <h2>How to Use</h2>
 
       <p class="subtitle">
-        1. Select the maintenance tasks you want.
+        1. Select the cleanup tasks you want.
       </p>
 
       <p class="subtitle">
-        2. Click Generate PowerShell Script.
+        2. Generate your customized PowerShell script.
       </p>
 
       <p class="subtitle">
-        3. Review and download the generated .ps1 file.
+        3. Review the commands and download the .ps1 file.
       </p>
 
       <p class="subtitle">
-        4. On a trusted Windows PC, inspect the downloaded
-        file in a text editor before running it.
+        4. Inspect the file in Notepad or another trusted
+        text editor before running it.
       </p>
 
       <p class="subtitle">
-        5. If you choose to run it, open PowerShell,
-        navigate to the download location, and run
-        the file using its relative path.
-        Read each confirmation prompt carefully.
+        5. Run the script on your own Windows computer
+        if permitted by its security policy.
+        Review the preview and confirmation prompts.
       </p>
 
       <p class="notice">
-        No execution-policy bypass is required or recommended.
-        If your computer blocks scripts, follow your
-        organization's security policy rather than
-        disabling protections.
+        The script does not require execution-policy
+        bypass commands. Do not disable Windows or
+        organizational security controls to run it.
       </p>
     </div>
   </main>
@@ -342,7 +455,7 @@ const pageTitle = "Windows Cleanup Toolkit";
   <footer>
     <div class="container">
       © {new Date().getFullYear()} Shaune Drake Tech.
-      Free tools for everyday computing.
+      Windows Cleanup Toolkit v1.1
     </div>
   </footer>
 
@@ -361,83 +474,239 @@ const pageTitle = "Windows Cleanup Toolkit";
 
     let generatedScript = "";
 
-    const header = [
-      "# Shaune Drake Tech - Windows Cleanup Toolkit",
-      "# https://shaunedrake.com",
-      "# Review this script before running it.",
-      "# Windows 10 / Windows 11",
-      "",
-      "$ErrorActionPreference = 'Stop'",
-      "",
-      "Write-Host 'Shaune Drake Tech - Windows Cleanup Toolkit'",
-      "Write-Host 'Selected tasks will be shown below.'",
-      ""
-    ].join("\n");
+    const header = String.raw`
+# ============================================================
+# Shaune Drake Tech - Windows Cleanup Toolkit v1.1
+# https://shaunedrake.com
+# Windows 10 / Windows 11
+#
+# Preview-first maintenance utility
+# Review this script before running it.
+# ============================================================
 
-    const tempScript = [
-      "# TASK: Clean old user temporary files",
-      "$tempPath = [System.IO.Path]::GetTempPath()",
-      "",
-      "if (-not (Test-Path -LiteralPath $tempPath)) {",
-      "    Write-Warning 'Temporary folder not found.'",
-      "} else {",
-      "    $cutoff = (Get-Date).AddDays(-7)",
-      "    $files = @(Get-ChildItem -LiteralPath $tempPath -File -Force -Recurse -ErrorAction SilentlyContinue |",
-      "        Where-Object { $_.LastWriteTime -lt $cutoff })",
-      "",
-      "    Write-Host ('Old temporary files found: ' + $files.Count)",
-      "",
-      "    $answer = Read-Host 'Delete these files permanently? Type YES to confirm'",
-      "    if ($answer -ceq 'YES') {",
-      "        foreach ($file in $files) {",
-      "            try {",
-      "                Remove-Item -LiteralPath $file.FullName -Force -ErrorAction Stop",
-      "            } catch {",
-      "                Write-Warning ('Skipped: ' + $file.FullName)",
-      "            }",
-      "        }",
-      "        Write-Host 'Temporary file cleanup finished.'",
-      "    } else {",
-      "        Write-Host 'Temporary file cleanup skipped.'",
-      "    }",
-      "}",
-      ""
-    ].join("\n");
+$ErrorActionPreference = 'Continue'
 
-    const recycleScript = [
-      "# TASK: Empty Recycle Bin",
-      "Write-Warning 'Recycle Bin contents will be permanently deleted.'",
-      "$answer = Read-Host 'Empty the Recycle Bin? Type YES to confirm'",
-      "if ($answer -ceq 'YES') {",
-      "    Clear-RecycleBin -Confirm:$false -ErrorAction Stop",
-      "    Write-Host 'Recycle Bin emptied.'",
-      "} else {",
-      "    Write-Host 'Recycle Bin cleanup skipped.'",
-      "}",
-      ""
-    ].join("\n");
+$report = [ordered]@{
+    TempFilesFound   = 0
+    TempFilesDeleted = 0
+    TempFilesSkipped = 0
+    TempBytesFound   = [long]0
+    TempBytesDeleted = [long]0
+    RecycleBinStatus = 'Not selected'
+    DNSStatus        = 'Not selected'
+}
 
-    const dnsScript = [
-      "# TASK: Flush DNS resolver cache",
-      "Write-Host 'Flushing DNS resolver cache...'",
-      "try {",
-      "    Clear-DnsClientCache -ErrorAction Stop",
-      "    Write-Host 'DNS cache flushed.'",
-      "} catch {",
-      "    Write-Warning ('DNS cache flush failed: ' + $_.Exception.Message)",
-      "}",
-      ""
-    ].join("\n");
+function Format-FileSize {
+    param([long]$Bytes)
+
+    if ($Bytes -ge 1GB) {
+        return ('{0:N2} GB' -f ($Bytes / 1GB))
+    }
+
+    if ($Bytes -ge 1MB) {
+        return ('{0:N2} MB' -f ($Bytes / 1MB))
+    }
+
+    if ($Bytes -ge 1KB) {
+        return ('{0:N2} KB' -f ($Bytes / 1KB))
+    }
+
+    return "$Bytes bytes"
+}
+
+Write-Host ''
+Write-Host '========================================='
+Write-Host 'Shaune Drake Tech - Windows Cleanup v1.1'
+Write-Host '========================================='
+Write-Host ''
+`;
+
+    const tempScript = String.raw`
+# ============================================================
+# TASK 1 - TEMPORARY FILE ANALYSIS
+# ============================================================
+
+Write-Host ''
+Write-Host '[1] Analyzing temporary files...'
+
+try {
+    $tempPath = [System.IO.Path]::GetTempPath()
+
+    if (-not (Test-Path -LiteralPath $tempPath)) {
+        Write-Warning 'Temporary folder not found.'
+    }
+    else {
+        $cutoff = (Get-Date).AddDays(-7)
+
+        $files = @(
+            Get-ChildItem -LiteralPath $tempPath -File -Force -Recurse -ErrorAction SilentlyContinue |
+                Where-Object {
+                    $_.LastWriteTime -lt $cutoff
+                }
+        )
+
+        $report.TempFilesFound = $files.Count
+
+        foreach ($file in $files) {
+            $report.TempBytesFound += $file.Length
+        }
+
+        Write-Host ''
+        Write-Host '--- TEMPORARY FILE PREVIEW ---'
+        Write-Host ('Folder: ' + $tempPath)
+        Write-Host ('Eligible files: ' + $report.TempFilesFound)
+        Write-Host ('Estimated space: ' + (Format-FileSize $report.TempBytesFound))
+        Write-Host 'Only files older than 7 days are eligible.'
+        Write-Host ''
+
+        if ($files.Count -gt 0) {
+            Write-Host 'Sample of eligible files:'
+
+            $files |
+                Select-Object -First 10 FullName, Length |
+                Format-Table -AutoSize |
+                Out-Host
+
+            Write-Host ''
+            Write-Host 'This is a preview. No files have been deleted.'
+
+            $answer = Read-Host 'Type YES to delete eligible files, or press Enter to skip'
+
+            if ($answer -ceq 'YES') {
+                foreach ($file in $files) {
+                    try {
+                        Remove-Item -LiteralPath $file.FullName -Force -ErrorAction Stop
+
+                        $report.TempFilesDeleted++
+                        $report.TempBytesDeleted += $file.Length
+                    }
+                    catch {
+                        $report.TempFilesSkipped++
+
+                        Write-Warning ('Skipped: ' + $file.FullName)
+                    }
+                }
+
+                Write-Host ''
+                Write-Host 'Temporary file cleanup finished.'
+            }
+            else {
+                Write-Host 'Cleanup skipped by user.'
+                $report.TempFilesSkipped = $files.Count
+            }
+        }
+        else {
+            Write-Host 'No eligible temporary files found.'
+        }
+    }
+}
+catch {
+    Write-Warning ('Temporary file analysis failed: ' + $_.Exception.Message)
+}
+`;
+
+    const recycleScript = String.raw`
+# ============================================================
+# TASK 2 - RECYCLE BIN CLEANUP
+# ============================================================
+
+Write-Host ''
+Write-Host '[2] Recycle Bin maintenance...'
+
+try {
+    Write-Warning 'Recycle Bin contents will be permanently deleted.'
+
+    $answer = Read-Host 'Type YES to empty the Recycle Bin, or press Enter to skip'
+
+    if ($answer -ceq 'YES') {
+        Clear-RecycleBin -Confirm:$false -ErrorAction Stop
+
+        $report.RecycleBinStatus = 'Completed'
+        Write-Host 'Recycle Bin cleanup completed.'
+    }
+    else {
+        $report.RecycleBinStatus = 'Skipped by user'
+        Write-Host 'Recycle Bin cleanup skipped.'
+    }
+}
+catch {
+    $report.RecycleBinStatus = 'Failed'
+
+    Write-Warning ('Recycle Bin cleanup failed: ' + $_.Exception.Message)
+}
+`;
+
+    const dnsScript = String.raw`
+# ============================================================
+# TASK 3 - DNS CACHE MAINTENANCE
+# ============================================================
+
+Write-Host ''
+Write-Host '[3] DNS cache maintenance...'
+
+try {
+    Clear-DnsClientCache -ErrorAction Stop
+
+    $report.DNSStatus = 'Completed'
+
+    Write-Host 'DNS cache successfully flushed.'
+}
+catch {
+    $report.DNSStatus = 'Failed'
+
+    Write-Warning ('DNS cache cleanup failed: ' + $_.Exception.Message)
+}
+`;
+
+    const reportScript = String.raw`
+# ============================================================
+# FINAL CLEANUP REPORT
+# ============================================================
+
+Write-Host ''
+Write-Host '========================================='
+Write-Host 'FINAL CLEANUP REPORT'
+Write-Host '========================================='
+
+Write-Host ''
+Write-Host ('Temporary files found:   ' + $report.TempFilesFound)
+Write-Host ('Temporary files deleted: ' + $report.TempFilesDeleted)
+Write-Host ('Temporary files skipped: ' + $report.TempFilesSkipped)
+
+Write-Host ''
+Write-Host ('Estimated eligible space: ' + (Format-FileSize $report.TempBytesFound))
+Write-Host ('Estimated space removed:  ' + (Format-FileSize $report.TempBytesDeleted))
+
+Write-Host ''
+Write-Host ('Recycle Bin: ' + $report.RecycleBinStatus)
+Write-Host ('DNS Cache:   ' + $report.DNSStatus)
+
+Write-Host ''
+Write-Host 'Cleanup session finished.'
+Write-Host 'Note: Actual free disk space may differ.'
+Write-Host ''
+
+Read-Host 'Press Enter to close'
+`;
 
     function generateScript() {
       const tasks = [];
 
-      if (temp.checked) tasks.push(tempScript);
-      if (recycle.checked) tasks.push(recycleScript);
-      if (dns.checked) tasks.push(dnsScript);
+      if (temp.checked) {
+        tasks.push(tempScript);
+      }
+
+      if (recycle.checked) {
+        tasks.push(recycleScript);
+      }
+
+      if (dns.checked) {
+        tasks.push(dnsScript);
+      }
 
       if (tasks.length === 0) {
         results.classList.add("hidden");
+        generatedScript = "";
         alert("Please select at least one cleanup task.");
         return;
       }
@@ -445,8 +714,7 @@ const pageTitle = "Windows Cleanup Toolkit";
       generatedScript = [
         header,
         ...tasks,
-        "Write-Host 'Selected maintenance tasks finished.'",
-        "Read-Host 'Press Enter to close'"
+        reportScript
       ].join("\n");
 
       preview.textContent = generatedScript;
@@ -460,7 +728,9 @@ const pageTitle = "Windows Cleanup Toolkit";
     }
 
     function downloadScript() {
-      if (!generatedScript) return;
+      if (!generatedScript) {
+        return;
+      }
 
       const blob = new Blob([generatedScript], {
         type: "text/plain;charset=utf-8"
@@ -470,25 +740,32 @@ const pageTitle = "Windows Cleanup Toolkit";
       const link = document.createElement("a");
 
       link.href = url;
-      link.download = "ShauneDrake-WindowsCleanup.ps1";
+      link.download = "ShauneDrake-WindowsCleanup-v1.1.ps1";
 
       document.body.appendChild(link);
       link.click();
       link.remove();
 
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+      }, 1000);
 
-      status.textContent = "Script download requested.";
+      status.textContent = "PowerShell script download requested.";
     }
 
     async function copyScript() {
-      if (!generatedScript) return;
+      if (!generatedScript) {
+        return;
+      }
 
       try {
         await navigator.clipboard.writeText(generatedScript);
-        status.textContent = "Script copied to clipboard.";
-      } catch {
-        status.textContent = "Unable to copy automatically. Select the preview text instead.";
+
+        status.textContent = "PowerShell script copied to clipboard.";
+      }
+      catch {
+        status.textContent =
+          "Unable to copy automatically. Select the preview text instead.";
       }
     }
 
