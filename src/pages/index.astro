@@ -196,6 +196,17 @@ const tools = [
             <div class="icon">{tool.icon}</div>
             <h3>{tool.title}</h3>
             <p>{tool.description}</p>
+
+<p>{tool.description}</p>
+
+{tool.title === "Windows Cleanup" && (
+  <a href="/tools/windows-cleanup" class="button">
+    Launch Tool →
+  </a>
+)}
+
+</article>
+
           </article>
         ))}
       </div>
